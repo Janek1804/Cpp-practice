@@ -28,6 +28,9 @@ class person{
         int getNumber(){
             return *Tel_number_;
         }
+        void show(){
+            std::cout<<*Name_<<"\t"<<*Surname_<<"\t"<<*Tel_number_<<"\n";
+        }
 
 };
 
