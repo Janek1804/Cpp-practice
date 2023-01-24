@@ -1,77 +1,50 @@
 #include <iostream>
-class jednostka{
-    protected:
-        double* HP;
-    public:
-        jednostka(){}
-        jednostka(double &hp){
-            HP = new double;
-            *HP = hp;
-        }
-        ~jednostka(){
-            delete HP;
-        }
-        double getHP(){
-            return *this->HP;
-        }
-};
-class ERK: jednostka
-{
-    protected:
-        double* tzz;
-    public:
-    ERK(double hp,double tempo){
-        HP = new double;
-        tzz = new double;
-        *HP = hp;
-        *tzz = tempo;
-    }
-    ~ERK(){
-        delete HP;
-        delete tzz;
-    }
-    double getTzz(){
-        return *this->tzz;
-    }
-    void setTzz(double &val){
-        *tzz=val;
-    }
-};
 
-class Kruk: jednostka
-{
+class box{
     protected:
-        double* energia;
+        int* size_;
     public:
-        Kruk(double hp,double eng){
-            HP = new double;
-            energia = new double;
-            *HP = hp;
-            *energia = eng;
+        box(){
+            int input;
+            std::cout<<"Choose size of a box.\n";
+            std::cin>>input;
+            size_=new int;
+            *size_=input;
         }
-        ~Kruk(){
-            delete HP;
-            delete energia;
+        ~box(){
+            delete size_;
         }
-        double getEnergia(){
-            return *this->energia;
+        int getSize(){
+            return *size_;
         }
-        
-        void przyspiesz(ERK &obj){
-            double newTzz = 2*obj.getTzz();
-            obj.setTzz(newTzz);
-            *energia = 0.5*(*energia);
-            
+        bool add(int elem){
+            if(elem<=*size_){
+                *size_-=elem;
+                std::cout<<"Element added."<<*size_<<" space left.\n";
+                return 1;
+            }
+            else{
+                std::cout<<"Can't fit into this box.";
+                return 0;
+            }
         }
 };
 
-int main(){
-    ERK er1(20.0,10.0);
-    Kruk kru1(20.0,15.0);
-    std::cout<<"ERK tzz:"<<er1.getTzz();
-    std::cout<<"Kruk eng:"<<kru1.getEnergia();
-    kru1.przyspiesz(er1);
-    std::cout<<"ERK tzz:"<<er1.getTzz();
-    std::cout<<"Kruk eng:"<<kru1.getEnergia();
+bool addElem(int elem, box* arr,int len){
+    bool result = false;
+    for(int i=0;i<len;i++){
+         
+        if ((arr+i)->add(elem) == true){
+            result=true;
+        }
+    }
+    return result;
 }
 
+int main(){
+    box box1;
+    int a = 5;
+    box* tab = new box [a];
+    box1.add(4);
+    std::cout<<addElem(5,tab,5);
+}
