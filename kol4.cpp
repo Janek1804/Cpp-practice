@@ -40,6 +40,8 @@ class land : protected organism{
             *height_ = rand() % 200;
         }
         ~land(){
+            delete weight_;
+            delete age_;
             delete height_;
         }
         bool operator<(land &right){
@@ -61,4 +63,5 @@ int main(){
     std::cout<<(*tab<*(tab+1));
     land l1,l2;
     std::cout<<(l1<l2);
+    land *tab2= new land [1000000];
 }
