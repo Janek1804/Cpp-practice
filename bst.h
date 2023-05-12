@@ -11,4 +11,5 @@ class BST{
         double minimum();
         double maximum();
         double getvalue();
+        void show();
 };

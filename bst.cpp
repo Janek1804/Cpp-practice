@@ -15,11 +15,24 @@ void BST::insert(double key){
         if (this->right == NULL){
             *this->right = BST(key);
         }
-        *this->right->insert(key);
+        this->right->insert(key);
+    }
+    if (key < *this->value){
+        if (this->left == NULL){
+            *this->left = BST(key);
+        }
+        this->left->insert(key);
     }
 }
 double BST::getvalue(){
     return *this->value;
+}
+void BST::show(){
+    std::cout<<*this->value<<std::endl;
+    if (this->left != NULL){
+        this->left->show();
+    if (this->)
+    }
 }
 
 int main(){
