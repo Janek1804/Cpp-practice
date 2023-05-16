@@ -1,13 +1,15 @@
-class SinglyLinkedList{
+template <class T> class SinglyLinkedList{
     private:
-        int* value;
+        T* value;
         SinglyLinkedList* next;
     public:
-        template <typename T> SinglyLinkedList(T val);
+        SinglyLinkedList(T val);
         ~SinglyLinkedList();
-        template<typename T> void insert(T val);
-        bool search(int val);
-        int minimum();
-        int maximum();
+        void insert(T val);
+        bool search(T val);
+        T minimum();
+        T maximum();
+        T getvalue();
+        void print();
 
 };

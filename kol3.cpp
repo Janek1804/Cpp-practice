@@ -33,7 +33,7 @@ class box{
 bool addElem(int elem, box* arr,int len){
     bool result = false;
     for(int i=0;i<len;i++){
-         
+        
         if ((arr+i)->add(elem) == true){
             result=true;
         }
