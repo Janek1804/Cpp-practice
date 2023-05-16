@@ -1,12 +1,15 @@
 #include <iostream>
 #include "linked.h"
-SinglyLinkedList::SinglyLinkedList(int val){
-    value = new int;
+template <typename  T>SinglyLinkedList::SinglyLinkedList(T val){
+    value = new T;
     *value = val;
     next = nullptr;
 }
-SinglyLinkedList::~SinglyLinkedList(int val){
+SinglyLinkedList::~SinglyLinkedList(){
     delete value;
+}
+template<typename T>  void SinglyLinkedList::insert(T val){
+
 }
 int main(){
 

@@ -3,9 +3,9 @@ class SinglyLinkedList{
         int* value;
         SinglyLinkedList* next;
     public:
-        SinglyLinkedList(int val);
-        ~SinglyLinkedList():
-        void insert(int val);
+        template <typename T> SinglyLinkedList(T val);
+        ~SinglyLinkedList();
+        template<typename T> void insert(T val);
         bool search(int val);
         int minimum();
         int maximum();
