@@ -5,7 +5,7 @@ template <class T> class SinglyLinkedList{
     public:
         SinglyLinkedList(T val);
         ~SinglyLinkedList();
-        void insert(T val);
+        void insert(T val,int index);
         bool search(T val);
         T minimum();
         T maximum();
