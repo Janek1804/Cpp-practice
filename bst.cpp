@@ -1,16 +1,16 @@
 #include <iostream>
 #include "bst.h"
 
-BST::BST(double key){
-    value = new double;
+template <class T> BST<T>::BST(T key){
+    value = new T;
     *value = key;
     left = nullptr;
     right = nullptr;
 }
-BST::~BST(){
+template <class T> BST<T>::~BST(){
     delete value;
 }
-void BST::insert(double key){
+template <class T> void BST<T>::insert(T key){
     if (key > *this->value){
         if (this->right == NULL){
             this->right = new BST(key);
@@ -24,7 +24,7 @@ void BST::insert(double key){
         this->left->insert(key);
     }
 }
-bool BST::search(double key){
+template <class T> bool BST<T>::search(T key){
     if (key == *this->value){
         return true;
     }
@@ -38,10 +38,10 @@ bool BST::search(double key){
     return false;
     }
 }
-double BST::getvalue(){
+template <class T> T BST<T>::getvalue(){
     return *this->value;
 }
-double BST::minimum(){
+template <class T> T BST<T>::minimum(){
     if (this->left == NULL){
         return *this->value;
     }
@@ -49,7 +49,7 @@ double BST::minimum(){
         return this->left->minimum();
     }
 }
-double BST::maximum(){
+template <class T> T BST<T>::maximum(){
     if (this->right == NULL){
         return *this->value;
     }
@@ -57,7 +57,7 @@ double BST::maximum(){
         return this->right->maximum();
     }
 }
-void BST::show(){
+template <class T> void BST<T>::show(){
     std::cout<<*this->value<<std::endl;
     if (this->left != NULL){
         this->left->show();
@@ -68,12 +68,10 @@ void BST::show(){
 }
 
 int main(){
-    std::cout<<"aaaaaaaa";
-    BST aaaaaaaa = BST(1.5);
-    aaaaaaaa.insert(1.2);
-    std::cout<<"aaaaaaaaaaaaaa\n";
-    aaaaaaaa.show();
-    std::cout<<aaaaaaaa.search(1.2)<<"\n";
-    std::cout<<aaaaaaaa.search(1.9)<<"\t"<<aaaaaaaa.minimum()<<"\t"<<aaaaaaaa.maximum();
+    BST tree = BST(1.5);
+    tree.insert(1.2);
+    tree.show();
+    std::cout<<tree.search(1.2)<<"\n";
+    std::cout<<tree.search(1.9)<<"\t"<<tree.minimum()<<"\t"<<tree.maximum();
     return 0;
 }

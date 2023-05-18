@@ -1,15 +1,15 @@
-class BST{
+template <class T> class BST{
     protected:
-        double* value;
+        T* value;
         BST* left;
         BST* right;
     public:
-        BST(double key);
+        BST(T key);
         ~BST();
-        void insert(double key);
-        bool search(double key);
-        double minimum();
-        double maximum();
-        double getvalue();
+        void insert(T key);
+        bool search(T key);
+        T minimum();
+        T maximum();
+        T getvalue();
         void show();
 };
