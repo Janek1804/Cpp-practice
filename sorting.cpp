@@ -24,49 +24,51 @@ template <typename T> void quicksort(T* arr, int left, int right){
         quicksort(arr,partitionIndex+1,right);
     }
 }
-//TODO: review memory management on mergesort
-template<typename T> void merge(T* arr1, T* arr2, int length1, int length2){
+
+template<typename T> void merge(T* arr1, T* arr2, int length1, int length2,T* output){
     int i =0;
     int j =0;
     int k =0;
-    T* result = new T[length1+length2];
+    
     while (i<length1 && j<length2) {
         if (*(arr1+i)>*(arr2+j)){
-            *(result+k) = *(arr1+i);
+            *(output+k) = *(arr1+i);
             i++;
         }
         else {
-            *(result+k) = *(arr2+j);
+            *(output+k) = *(arr2+j);
             j++;
         }
         k++;
     }
     while (k<length1) {
-        *(result+k) = *(arr1+k);
+        *(output+k) = *(arr1+k);
         k++;
     }
     while (k<length2) {
-        *(result+k) = *(arr2+k);
+        *(output+k) = *(arr2+k);
         k++;
     }
 }
-template <typename T> void mergesort(T* arr, int length){
-    int mid = (length-1) / 2;
-    int newlen = static_cast<int>(length/2);
-    T* arr1 = new T[newlen];
-    T* arr2 = new T[length - newlen];
-    int i = 0;
-    while (i<mid){
-        *(arr1+i) = *(arr+i);
-        i++;
+template <typename T> void mergesort(T* arr, int left, int right){
+    if (left<right){
+        
+        int mid = (left+right) / 2;
+        T arr1[mid];
+        T arr2[right-mid];
+        int i = 0;
+        while (i<mid){
+            arr1[i] = *(arr+i);
+            i++;
+        }
+        while (i<right) {
+            arr2[i] = *(arr+i);
+            i++;
+        }
+        mergesort(arr1, left,mid);
+        mergesort(arr2, mid+1,right);
+        merge(arr1,arr2,mid-left,right-(mid+1),arr);
     }
-    while (i<length) {
-        *(arr2+i) = *(arr+i);
-        i++;
-    }
-    mergesort(arr1, newlen);
-    mergesort(arr2, length-newlen);
-    merge(arr1,arr2,newlen,length-newlen);
 }
 int main(){
     srand(time(NULL));
@@ -74,7 +76,7 @@ int main(){
     for (int i=0; i<10; i++){
         *(arr+i) = (rand() % 100)/12.79;
     }
-    mergesort(arr,10);
+    mergesort(arr,0,9);
     for (int i=0;i<10;i++){
         std::cout<<*(arr+i)<<"\n";
     }
